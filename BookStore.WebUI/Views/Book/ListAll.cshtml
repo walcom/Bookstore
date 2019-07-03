@@ -1,0 +1,19 @@
+﻿@*@model List<BookStore.Domain.Entities.Book>*@
+@using BookStore.Domain.Entities
+@model IEnumerable <Book>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Books List</h2>
+Books Count: @Model.Count()
+
+@foreach(var b in Model)
+{
+    <h3>@b.Title</h3>
+    @b.Description 
+    <h4>@b.Price.ToString("c")</h4>
+    <hr />
+}
+

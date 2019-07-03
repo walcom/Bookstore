@@ -1,0 +1,36 @@
+﻿@*@model List<BookStore.Domain.Entities.Book>*@
+@*@using BookStore.Domain.Entities*@
+@*@model IEnumerable <Book>*@
+
+@using BookStore.WebUI.HtmlHelper
+@model BookStore.WebUI.Models.BookListViewModel
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Books List</h2>
+@*Books Count: @Model.Count()*@
+
+@foreach (var b in Model.Books)
+{
+    @Html.Partial("BookSummary", b);
+    @*<div>
+            <h3>
+                <strong>
+                    @b.Title
+                </strong>
+            </h3>
+            <span class="pull-right label label-primary">
+                @b.Price.ToString("c")
+            </span>
+            <span class="lead">
+                @b.Description
+            </span>
+            <hr />
+        </div>*@
+}
+
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", "Book", new { pageno = x }))
+</div>
