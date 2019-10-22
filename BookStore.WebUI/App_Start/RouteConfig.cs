@@ -14,14 +14,14 @@ namespace BookStore.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(null, "",   // url/
-                new { Controller = "Book", Action = "List", specilization = (string)null, pageno = 1 }
+                new { Controller = "Book", Action = "ListAll", specilization = (string)null, pageno = 1 }
                 );
 
 
             routes.MapRoute(            // url/BookListPage2
              name: null,
              url: "BookListPage{pageno}",
-             defaults: new { controller = "Book", action = "List" }
+             defaults: new { controller = "Book", action = "List", specilization = (string)null }
          );
 
 

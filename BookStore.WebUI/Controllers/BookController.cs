@@ -36,7 +36,10 @@ namespace BookStore.WebUI.Controllers
                 {
                     CurrentPage = pageno,
                     ItemsPerPage = PageSize,
-                    TotalItems = repository.Books.Count()
+                    //TotalItems = repository.Books.Count()
+                    TotalItems = (specilization == null) ?
+                    repository.Books.Count() :
+                    repository.Books.Where(b => b.Specialization == specilization).Count()
                 },
                 CurrentSpecialization = specilization
             };

@@ -11,7 +11,7 @@ Books Count: @Model.Count()
 
 @foreach(var b in Model)
 {
-    <h3>@b.Title</h3>
+    <h3>@b.Title</h3>  @b.Specialization <br />
     @b.Description 
     <h4>@b.Price.ToString("c")</h4>
     <hr />

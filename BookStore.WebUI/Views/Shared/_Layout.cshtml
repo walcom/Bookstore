@@ -29,11 +29,11 @@
     <div class="navbar navbar-inverse" role="navigation">
         <a class="navbar-brand " href="#">Book Store</a>
     </div>
-    @*<div class="row panel">
-            <div id="specialization" class="col-xs-3">
-                Something useful here
-            </div>
-        </div>*@
+    <div class="row panel">
+        <div id="specialization" class="col-xs-3">
+            @Html.Action("Menu", "Nav")
+        </div>
+    </div>
 
     <div class="container body-content">
         @RenderBody()
