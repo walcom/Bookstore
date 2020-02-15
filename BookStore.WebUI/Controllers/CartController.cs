@@ -18,20 +18,22 @@ namespace BookStore.WebUI.Controllers
             repo = r;
         }
 
-        public RedirectToRouteResult AddToCart(int isbn, string returnUrl)
+        public RedirectToRouteResult AddToCart(Cart cart, int isbn, string returnUrl)
         {
             Book book = repo.Books.FirstOrDefault(b => b.ISBN == isbn);
-            if(book != null)            
-                GetCart().AddItem(book);
+            if (book != null)
+                cart.AddItem(book);
+            //GetCart().AddItem(book);
 
             return RedirectToAction("Index", new { returnUrl });  //returnUrl);
         }
 
-        public RedirectToRouteResult RemoveFromCart(int isbn, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(Cart cart, int isbn, string returnUrl)
         {
             Book book = repo.Books.FirstOrDefault(b => b.ISBN == isbn);
             if (book != null)
-                GetCart().RemoveAll(book);
+                cart.RemoveAll(book);
+            //GetCart().RemoveAll(book);
 
             return RedirectToAction("Index", new { returnUrl });  //returnUrl);
         }
@@ -50,15 +52,25 @@ namespace BookStore.WebUI.Controllers
         }
 
         // GET: Cart
-        public ActionResult Index(string returnUrl)
+        public ActionResult Index(Cart cart, string returnUrl)
         {
             return View(new CartIndexViewModel
             {
-                Cart = GetCart(),
+                //Cart = GetCart(),
+                Cart = cart,
                 ReturnUrl = returnUrl
             });
         }
 
+        public PartialViewResult Summary(Cart cart)
+        {
+            return PartialView(cart);
+        }
+
+        public ViewResult Checkout()
+        {
+            return View(new ShippingDetails());
+        }
 
     }
 }

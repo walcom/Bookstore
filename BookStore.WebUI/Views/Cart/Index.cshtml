@@ -5,8 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    #cartTable td {
+        vertical-align: middle;
+    }
+</style>
+
 <h2>Your Cart</h2>
-<table class="table">
+<table id="cartTable" class="table">
     <thead>
     <th>Item</th>
     <th class="text-right">Price</th>
@@ -21,6 +27,14 @@
                 <td class="text-right">@line.Book.Price.ToString("c") </td>
                 <td class="text-left">@line.Quantity </td>
                 <td class="text-right">@((@line.Quantity * line.Book.Price).ToString("c")) </td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("isbn", line.Book.ISBN)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="btn btn-sm btn-warning " type="submit" value="Remove" />
+                    }
+                </td>
             </tr>
         }
     </tbody>
@@ -34,4 +48,5 @@
 
 <div class="text-center">
     <a class="btn btn-primary " href="@Model.ReturnUrl">Continue Shopping</a>
+    @Html.ActionLink("Checkout Now!", "Checkout", null, new { @class = "btn btn-primary" })
 </div>
