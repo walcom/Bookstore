@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.Abstract
 {
-    interface IOrderProcessor
+    public interface IOrderProcessor
     {
-        void Processorder(Cart cart, ShippingDetails shippingDetails);
+        void ProcessOrder(Cart cart, ShippingDetails shippingDetails);
     }
 }

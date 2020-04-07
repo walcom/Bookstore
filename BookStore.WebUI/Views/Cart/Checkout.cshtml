@@ -9,6 +9,8 @@
 <p>Please enter your details, and we wil ship your books right away</p>
 @using (Html.BeginForm())
 {
+    @Html.ValidationSummary();
+
     <h3>Ship to</h3>
     <div class="form-group">
         <label>Name: </label>

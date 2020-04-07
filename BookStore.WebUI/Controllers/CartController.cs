@@ -12,10 +12,12 @@ namespace BookStore.WebUI.Controllers
     public class CartController : Controller
     {
         private IBookRepository repo;
+        private IOrderProcessor orderProcessor;
 
-        public CartController(IBookRepository r)
+        public CartController(IBookRepository r, IOrderProcessor proc)
         {
             repo = r;
+            orderProcessor = proc;
         }
 
         public RedirectToRouteResult AddToCart(Cart cart, int isbn, string returnUrl)
@@ -70,6 +72,22 @@ namespace BookStore.WebUI.Controllers
         public ViewResult Checkout()
         {
             return View(new ShippingDetails());
+        }
+
+        [HttpPost]
+        public ViewResult Checkout(Cart cart, ShippingDetails shippingDeails)
+        {
+            if (cart.Lines.Count() == 0)
+                ModelState.AddModelError("", "Sorry, your cart is empty");
+
+            if (ModelState.IsValid)
+            {
+                orderProcessor.ProcessOrder(cart, shippingDeails);
+                cart.Clear();
+                return View("Completed");
+            }
+            else
+                return View(shippingDeails);
         }
 
     }
