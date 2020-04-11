@@ -21,6 +21,7 @@ namespace BookStore.WebUI.Controllers
         public ViewResult ListAll()
         {
             return View(repository.Books);
+            //return List(null, 1);
         }
 
         public ViewResult List(string specilization, int pageno = 1)
@@ -46,6 +47,7 @@ namespace BookStore.WebUI.Controllers
 
             return View(model);
         }
+
 
     }
 }

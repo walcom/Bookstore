@@ -23,12 +23,15 @@ namespace BookStore.WebUI.Controllers
         }
 
 
-        public PartialViewResult Menu(string specilization = null)
+        public PartialViewResult Menu(string specilization = null, bool mobileLayout = false)
         {
             ViewBag.SelectedSpec = specilization;
-            IEnumerable<string> spec = repo.Books.Select(b => b.Specialization).Distinct();
+            IEnumerable<string> spec = repo.Books
+                                           .Select(b => b.Specialization)
+                                           .Distinct();
 
-            return PartialView(spec);
+            string viewName = "Flexmenu"; //mobileLayout ? "MenuHorizontal" : "Menu";
+            return PartialView(viewName, spec);
             //return "Hello fom NavController";
         }
 

@@ -31,18 +31,21 @@
         <a class="navbar-brand " href="#">Book Store</a>
         @Html.Action("Summary", "Cart")
     </div>
-    <div class="row panel">
-        <div id="specialization" class="col-xs-3">
+    <div class="visible-xs">
+        @Html.Action("Menu", "Nav", new { mobileLayout = true })
+    </div>
+    <div class="row panel" style="width: 100%;">
+        <div id="specialization" class="col-xs-3 hidden-xs">
             @Html.Action("Menu", "Nav")
         </div>
-    </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div class="container body-content col-xs-8">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>

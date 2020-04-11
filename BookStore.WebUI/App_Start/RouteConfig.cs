@@ -21,7 +21,7 @@ namespace BookStore.WebUI
             routes.MapRoute(            // url/BookListPage2
              name: null,
              url: "BookListPage{pageno}",
-             defaults: new { controller = "Book", action = "List", specilization = (string)null }
+             defaults: new { controller = "Book", action = "ListAll", specilization = (string)null, pageno = 1 }
          );
 
 
