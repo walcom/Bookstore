@@ -1,0 +1,82 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Book>
+
+@{
+    ViewBag.Title = "Admin: All Books";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Html.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div>
+        <h2>Admininstation Page</h2>
+        <p>@Html.ActionLink("Create New", "Create")</p>
+        <table class="table">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+            </tr>
+            @"D:\Waleed\Projects\VS2015\BookStore.WebUI\BookStore.WebUI\Views\Admin\Index.cshtml"
+       __o = Html.DisplayNameFor(model => model.Title);
+
+
+#line default
+#line hidden
+
+#line 5 "D:\Waleed\Projects\VS2015\BookStore.WebUI\BookStore.WebUI\Views\Admin\Index.cshtml"
+            __o = Html.DisplayNameFor(model => model.Description);
+
+
+#line default
+#line hidden
+
+#line 6 "D:\Waleed\Projects\VS2015\BookStore.WebUI\BookStore.WebUI\Views\Admin\Index.cshtml"
+            __o = Html.DisplayNameFor(model => model.Price);
+
+
+#line default
+#line hidden
+
+#line 7 "D:\Waleed\Projects\VS2015\BookStore.WebUI\BookStore.WebUI\Views\Admin\Index.cshtml"
+            __o = Html.DisplayNameFor(model => model.Specialization);
+
+
+#line default
+#line hidden
+
+#line 8 "D:\Waleed\Projects\VS2015\BookStore.WebUI\BookStore.WebUI\Views\Admin\Index.cshtml"
+            __o = Html.DisplayNameFor(model => model.Author);
+
+
+#line default
+#line hidden
+
+#line 9 "D:\Waleed\Projects\VS2015\BookStore.WebUI\BookStore.WebUI\Views\Admin\Index.cshtml"
+            foreach (var item in Model){
+                {
+         <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ISBN)</td>
+                    <td>@Html.ActionLink(item.Title, "Edit", new { item.ISBN })</td>
+                    <td>@item.Price.ToString("c")</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specialization) |
+                        @Html.DisplayFor(modelItem => item.Author) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ISBN }, new { @class = "btn btn-danger btn-xs" }) |
+                    </td>
+                </tr>"D:\Waleed\Projects\VS2015\BookStore.WebUI\BookStore.WebUI\Views\Admin\Index.cshtml"
+
+            }
+        </table>
+    </div>
+</body>
+</html>

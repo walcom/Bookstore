@@ -1,4 +1,5 @@
 ﻿using BookStore.Domain.Abstract;
+using BookStore.Domain.Entities;
 using BookStore.WebUI.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,18 @@ namespace BookStore.WebUI.Controllers
         {
             repository = bookRep;
         }
+
+
+        public FileContentResult GetImage(string ISBN)
+        {
+            Book bo = repository.Books.FirstOrDefault(b => b.ISBN == int.Parse(ISBN));
+
+            if (bo != null)
+                return File(bo.ImageData, bo.ImageMimeType);
+            else
+                return null;
+        }
+
 
         public ViewResult ListAll()
         {

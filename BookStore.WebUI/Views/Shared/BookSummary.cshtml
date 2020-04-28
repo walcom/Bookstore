@@ -1,22 +1,31 @@
 ﻿@model BookStore.Domain.Entities.Book
 
 <div class="well">
-    <h3>
-        <strong>@Model.Title</strong>
-    </h3>
-    <span class="pull-right label label-primary">
-        @Model.Price.ToString("c")
-    </span>
-    @using (Html.BeginForm("AddToCart", "Cart"))
+    @if (Model.ImageData != null)
     {
-        <span class="lead">
-            @Model.Specialization <br />
-            @Model.Description
-        </span>
-        <div class="">
-            @Html.HiddenFor(b => b.ISBN)
-            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-            <input type="submit" class="btn btn-success" value="Add To Cart" />
+        <div class="pull-left" style="margin-right: 10px; ">
+            <img class="img-rounded" width="100" height="100" src="@Url.Action("GetImage", "Book", new {Model.ISBN})" />
         </div>
     }
+
+
+    <h3>
+        <strong>@Model.Title</strong>
+        <span class="pull-right label label-primary text-primary">@Model.Price.ToString("c")</span>
+    </h3>
+
+
+    @using (Html.BeginForm("AddToCart", "Cart"))
+    {        
+        <div class="pull-right">
+            @Html.HiddenFor(b => b.ISBN)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="btn btn-success btn-lg" value="Add To Cart" />
+        </div>
+    }
+
+    <span class="lead">
+        @Model.Specialization <br />
+        @Model.Description
+    </span>
 </div>

@@ -43,6 +43,8 @@ namespace BookStore.WebUI.Infrastructure
 
             kernel.Bind<IBookRepository>().To<EFBookRepository>();
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("setting", emailSettings);
+
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
 
         public object GetService(Type serviceType)
